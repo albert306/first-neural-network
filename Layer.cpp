@@ -17,7 +17,7 @@ class Layer {
         }
 
         double activationFunction(double input) {
-            return input / (1 + abs(input));
+            return 0.5 * (input / (1 + abs(input)) + 1);
         }
 
         vector<double> calculateOutputs(vector<double> inputs) {
