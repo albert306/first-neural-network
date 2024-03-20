@@ -11,6 +11,8 @@ class Layer {
         vector<double> biases;
         
         Layer(int numOfNodesIn, int numOfNodesOut);
+
+        double activationFunction(double input);
         
         vector<double> calculateOutputs(vector<double> inputs);
 };

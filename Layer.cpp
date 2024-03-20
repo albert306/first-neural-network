@@ -16,14 +16,19 @@ class Layer {
             this->numOfNodesOut = numOfNodesOut;
         }
 
+        double activationFunction(double input) {
+            return (input > 0) ? 1 : 0;
+        }
+
         vector<double> calculateOutputs(vector<double> inputs) {
             vector<double> outputs;
             for (int i = 0; i < numOfNodesOut; i++) {
-                double activation = 0;
+                double weightetInputs = biases[i];
                 for (int j = 0; j < numOfNodesIn; j++) {
-                    activation += inputs[j] * weights[j][i];
+                    weightetInputs += inputs[j] * weights[j][i];
                 }
-                outputs[i] = activation + biases[i];
+                outputs[i] = activationFunction(weightetInputs);
             }
+            return outputs;
         }
 };
