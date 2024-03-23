@@ -12,6 +12,8 @@ class Layer {
         
         Layer(int numOfNodesIn, int numOfNodesOut);
 
+        void initializeRandom();
+
         double activationFunction(double input);
         
         vector<double> calculateOutputs(vector<double> inputs);

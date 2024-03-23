@@ -1,6 +1,7 @@
 #include "stdlib.h"
 #include <vector>
 #include <string>
+#include <random>
 #include "Layer.h"
 
 using namespace std;
@@ -14,6 +15,18 @@ class Layer {
         Layer(int numOfNodesIn, int numOfNodesOut) {
             this->numOfNodesIn = numOfNodesIn;
             this->numOfNodesOut = numOfNodesOut;
+        }
+
+        void initializeRandom() {
+            srand(time(NULL));
+            for (int i = 0; i < numOfNodesIn; i++) {
+                for (int j = 0; j < numOfNodesOut; j++) {
+                    weights[i][j] = (rand() % 1) * 0.1; // random double in range [0, 1)
+                }
+            }
+            for (int i = 0; i < numOfNodesOut; i++) {
+                biases[i] = (rand() % 1) * 0.1; // random double in range [0, 1)
+            }            
         }
 
         double activationFunction(double input) {
