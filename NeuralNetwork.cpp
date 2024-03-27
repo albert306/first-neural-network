@@ -8,16 +8,14 @@ using namespace std;
 
 
 NeuralNetwork::NeuralNetwork(vector<int> layerSizes) {
-    for (int i = 0; i < layerSizes.size() - 1; i++)
-    {
+    for (int i = 0; i < layerSizes.size() - 1; i++) {
         layers[i] = Layer(layerSizes[i], layerSizes[i + 1]);
         layers[i].initializeRandom();
     }
 }
 
 vector<double> NeuralNetwork::calculateOutputs(vector<double> inputs) {
-    for (Layer layer : layers)
-    {
+    for (Layer layer : layers) {
         inputs = layer.calculateOutputs(inputs);
     }
     return inputs;
@@ -29,10 +27,8 @@ int NeuralNetwork::classify(vector<double> inputs) {
     // find nodeindex with highest activation
     double highestActivation = 0;
     int highestActivationIndex = 0;
-    for (int i = 0; i < outputs.size(); i++)
-    {
-        if (outputs[i] >= highestActivation)
-        {
+    for (int i = 0; i < outputs.size(); i++) {
+        if (outputs[i] >= highestActivation)    {
             highestActivation = outputs[i];
             highestActivationIndex = i;
         }
@@ -50,9 +46,8 @@ double NeuralNetwork::loss(DataPoint dataPoint) {
 
     double loss = 0;
     // calculate loss for each node and add up
-    for (int i = 0; i < outputs.size(); i++)
-    {
-        loss += NeuralNetwork::nodeLoss(outputs[i], dataPoint.expectedOutputs[i]);
+    for (int i = 0; i < outputs.size(); i++) {
+        loss += this->nodeLoss(outputs[i], dataPoint.expectedOutputs[i]);
     }
 
     return loss;
@@ -61,8 +56,7 @@ double NeuralNetwork::loss(DataPoint dataPoint) {
 double NeuralNetwork::loss(vector<DataPoint> data) {
     double totalLoss = 0;
 
-    for (DataPoint dataPoint : data)
-    {
+    for (DataPoint dataPoint : data) {
         totalLoss += NeuralNetwork::loss(dataPoint);
     }
 
