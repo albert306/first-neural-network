@@ -1,6 +1,8 @@
-#include "stdlib.h"
+#pragma once
+#ifndef LAYER_H_
+#define LAYER_H_
+
 #include <vector>
-#include <string>
 
 using namespace std;
 
@@ -18,3 +20,5 @@ class Layer {
         
         vector<double> calculateOutputs(vector<double> inputs);
 };
+
+#endif
