@@ -8,21 +8,32 @@
 using namespace std;
 
 
-Layer::Layer(int numOfNodesIn, int numOfNodesOut) {
-    this->numOfNodesIn = numOfNodesIn;
-    this->numOfNodesOut = numOfNodesOut;
-}
-
 void Layer::initializeRandom() {
     srand(time(NULL));
     for (int i = 0; i < numOfNodesIn; i++) {
+        weights.push_back(vector<double>());
         for (int j = 0; j < numOfNodesOut; j++) {
-            weights[i][j] = (rand() % 1) * 0.1; // random double in range [0, 1)
+            weights[i].push_back((rand() % 1) * 0.1); // random double in range [0, 1)
         }
     }
     for (int i = 0; i < numOfNodesOut; i++) {
-        biases[i] = (rand() % 1) * 0.1; // random double in range [0, 1)
+        biases.push_back((rand() % 1) * 0.1); // random double in range [0, 1)
     }            
+}
+
+void Layer::toString() {
+    cout << "Weights: " << endl;
+    for (int i = 0; i < numOfNodesIn; i++) {
+        for (int j = 0; j < numOfNodesOut; j++) {
+            cout << weights[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << "Biases: " << endl;
+    for (int i = 0; i < numOfNodesOut; i++) {
+        cout << biases[i] << " ";
+    }
+    cout << endl;
 }
 
 double Layer::activationFunction(double input) {
@@ -36,7 +47,7 @@ vector<double> Layer::calculateOutputs(vector<double> inputs) {
         for (int j = 0; j < numOfNodesIn; j++) {
             weightetInputs += inputs[j] * weights[j][i];
         }
-        outputs[i] = activationFunction(weightetInputs);
+        outputs.push_back(Layer::activationFunction(weightetInputs));
     }
     return outputs;
 }

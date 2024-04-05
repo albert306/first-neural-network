@@ -12,9 +12,14 @@ class Layer {
         vector<vector<double>> weights; // weights[0][2] weight of connection from node 0 to node 2
         vector<double> biases;
         
-        Layer(int numOfNodesIn, int numOfNodesOut);
+        Layer(int numOfNodesIn, int numOfNodesOut) {
+            this->numOfNodesIn = numOfNodesIn;
+            this->numOfNodesOut = numOfNodesOut;
+        };
 
         void initializeRandom();
+
+        void toString();
 
         double activationFunction(double input);
         

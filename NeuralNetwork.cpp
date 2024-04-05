@@ -7,13 +7,6 @@
 using namespace std;
 
 
-NeuralNetwork::NeuralNetwork(vector<int> layerSizes) {
-    for (int i = 0; i < layerSizes.size() - 1; i++) {
-        layers[i] = Layer(layerSizes[i], layerSizes[i + 1]);
-        layers[i].initializeRandom();
-    }
-}
-
 vector<double> NeuralNetwork::calculateOutputs(vector<double> inputs) {
     for (Layer layer : layers) {
         inputs = layer.calculateOutputs(inputs);
