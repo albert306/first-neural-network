@@ -15,11 +15,9 @@ class NeuralNetwork {
 
         NeuralNetwork(vector<int> layerSizes) {
             for (int i = 0; i < layerSizes.size() - 1; i++) {
-                layers.push_back(Layer(layerSizes[i], layerSizes[i + 1]));
-                std::cout << "layer " << i << " initialized: ";
-                layers[i].initializeRandom();
-                layers[i].toString();
-                std::cout << std::endl;
+                Layer layer = Layer(layerSizes[i], layerSizes[i + 1]);
+                layer.initializeRandom(i);
+                layers.push_back(layer);
             }
         }
 

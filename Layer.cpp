@@ -8,17 +8,17 @@
 using namespace std;
 
 
-void Layer::initializeRandom() {
-    srand(time(NULL));
+void Layer::initializeRandom(unsigned int seed) {
+    srand(seed);
     for (int i = 0; i < numOfNodesIn; i++) {
         weights.push_back(vector<double>());
         for (int j = 0; j < numOfNodesOut; j++) {
-            weights[i].push_back((rand() % 1) * 0.1); // random double in range [0, 1)
+            weights[i].push_back((rand() % 10) * 0.1); // random double in range [0, 1)
         }
     }
     for (int i = 0; i < numOfNodesOut; i++) {
-        biases.push_back((rand() % 1) * 0.1); // random double in range [0, 1)
-    }            
+        biases.push_back((rand() % 10) * 0.1); // random double in range [0, 1)
+    }
 }
 
 void Layer::toString() {

@@ -17,7 +17,7 @@ class Layer {
             this->numOfNodesOut = numOfNodesOut;
         };
 
-        void initializeRandom();
+        void initializeRandom(unsigned int seed);
 
         void toString();
 
